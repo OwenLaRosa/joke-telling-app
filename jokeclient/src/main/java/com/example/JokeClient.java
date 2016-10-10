@@ -15,10 +15,10 @@ public class JokeClient {
     private static final String BASE_URL = "http://localhost:8080/_ah/api/myApi/v1/";
 
     // methods
-    private static final String JOKE = "mybean";
+    private static final String JOKE = "joke";
 
     // json keys
-    private static final String JOKE_KEY = "data";
+    private static final String JOKE_KEY = "text";
 
     /**
      * Get a joke

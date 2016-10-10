@@ -29,9 +29,9 @@ public class MyEndpoint {
      * @return A (not) random Halloween joke
      */
     @ApiMethod(name = "joke")
-    public MyBean getJoke() {
-        MyBean response = new MyBean();
-        response.setData("Why did the ghost go into the bar?\n\nFor the Boos!");
+    public Joke getJoke() {
+        Joke response = new Joke();
+        response.setText("Why did the ghost go into the bar?\n\nFor the Boos!");
 
         return response;
     }
