@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
     public void tellJoke(View view) {
         // get a joke and show it in the activity
         Intent intent = new Intent(this, JokeActivity.class);
-        String joke = mJokeClient.getJoke();
+        String joke = "";
         intent.putExtra(JokeActivity.JOKE_EXTRA, joke);
         startActivity(intent);
     }
