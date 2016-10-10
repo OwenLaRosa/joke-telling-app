@@ -27,5 +27,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="JokeServer" exported="" />
+    <orderEntry type="library" exported="" name="okhttp-3.4.1" level="project" />
+    <orderEntry type="library" exported="" name="json-20090211" level="project" />
+    <orderEntry type="library" exported="" name="appengine-endpoints-1.9.34" level="project" />
+    <orderEntry type="library" exported="" name="appengine-endpoints-deps-1.9.34" level="project" />
+    <orderEntry type="library" exported="" name="servlet-api-2.5" level="project" />
+    <orderEntry type="library" exported="" name="okio-1.9.0" level="project" />
+    <orderEntry type="library" exported="" name="appengine-api-1.0-sdk-1.9.34" level="project" />
   </component>
 </module>
