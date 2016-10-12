@@ -32,11 +32,11 @@ public class MyEndpoint {
     // unique key to be used for referencing jokes
     private static int nextKey = 0;
 
-    private static LinkedHashMap<Integer, String> jokes;
+    private static LinkedHashMap<Integer, Joke> jokes;
     static {
-        jokes = new LinkedHashMap<Integer, String>();
-        jokes.put(0, "Why did the ghost go into the bar?\n\nFor the Boos!");
-        jokes.put(1, "Knock Knock!\n\nWho's there?\n\nLong pause...\n\nJava");
+        jokes = new LinkedHashMap<Integer, Joke>();
+        jokes.put(0, new Joke("Why did the ghost go into the bar?\n\nFor the Boos!"));
+        jokes.put(1, new Joke("Knock Knock!\n\nWho's there?\n\nLong pause...\n\nJava"));
         nextKey = jokes.keySet().size();
     }
     private static ArrayList<Integer> keys;
@@ -51,8 +51,8 @@ public class MyEndpoint {
      * @return A (not) random Halloween joke
      */
     @ApiMethod(name = "getJoke", path = "get_joke")
-    public Joke getJoke() {
-        Joke response = new Joke();
+    public JokeResponse getJoke() {
+        JokeResponse response = new JokeResponse();
         String joke = null;
         int id = 0;
         while (true) {
@@ -60,7 +60,7 @@ public class MyEndpoint {
             Exception exception = null;
             try {
                 id = keys.get(new Random().nextInt() % keys.size());
-                joke = jokes.get(id);
+                joke = jokes.get(id).text;
             } catch (IndexOutOfBoundsException e) {
                 exception = e;
             }
@@ -87,7 +87,7 @@ public class MyEndpoint {
             int key = nextKey;
             nextKey++;
             // add the joke
-            jokes.put(key, joke);
+            jokes.put(key, new Joke(joke));
             keys.add(key);
             response.setSuccess(true);
         }

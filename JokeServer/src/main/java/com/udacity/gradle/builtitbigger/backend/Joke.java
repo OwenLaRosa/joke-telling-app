@@ -5,23 +5,35 @@ package com.udacity.gradle.builtitbigger.backend;
  */
 public class Joke {
 
-    private String text;
-    private int id;
+    private static final int DEFAULT_POPULARITY = 3;
 
-    public String getText() {
-        return text;
-    }
+    /**
+     * Text of the joke
+     */
+    public String text;
 
-    public void setText(String text) {
+    // Net votes (upvotes- downvotes
+    private int popularity;
+
+    public Joke(String text) {
         this.text = text;
+        popularity = DEFAULT_POPULARITY;
     }
 
-    public int getId() {
-        return id;
+    /**
+     * Increment the popularity score by 1
+     * @return Updated popularity score
+     */
+    public int upVote() {
+        return popularity++;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    /**
+     * Decrement the popularity score by 1
+     * @return Updated popularity score
+     */
+    public int downVote() {
+        return popularity++;
     }
 
 }
