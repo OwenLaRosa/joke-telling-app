@@ -9,6 +9,7 @@ package com.udacity.gradle.builtitbigger.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.api.server.spi.config.Named;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -29,7 +30,7 @@ import java.util.Random;
 public class MyEndpoint {
 
     // unique key to be used for referencing jokes
-    static int nextKey = 0;
+    private static int nextKey = 0;
 
     private static LinkedHashMap<Integer, String> jokes;
     static {
@@ -49,7 +50,7 @@ public class MyEndpoint {
      * Get a randomly selected joke
      * @return A (not) random Halloween joke
      */
-    @ApiMethod(name = "joke")
+    @ApiMethod(name = "getJoke", path = "get_joke")
     public Joke getJoke() {
         Joke response = new Joke();
         String joke = null;
@@ -71,6 +72,25 @@ public class MyEndpoint {
         }
         response.setText(joke);
         response.setId(id);
+
+        return response;
+    }
+
+    @ApiMethod(name = "postJoke", path = "post_joke", httpMethod = ApiMethod.HttpMethod.POST)
+    public SuccessResponse postJoke(@Named("joke") String joke) {
+        SuccessResponse response = new SuccessResponse();
+
+        if (joke.equals("")) {
+            response.setSuccess(false);
+        } else {
+            // ensure the key doesn't change because of race conditions
+            int key = nextKey;
+            nextKey++;
+            // add the joke
+            jokes.put(key, joke);
+            keys.add(key);
+            response.setSuccess(true);
+        }
 
         return response;
     }
