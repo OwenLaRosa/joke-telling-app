@@ -53,11 +53,13 @@ public class MyEndpoint {
     public Joke getJoke() {
         Joke response = new Joke();
         String joke = null;
+        int id = 0;
         while (true) {
             // make sure we get a joke, try again if there's a concurrency issue
             Exception exception = null;
             try {
-                joke = jokes.get(keys.get(new Random().nextInt() % keys.size()));
+                id = keys.get(new Random().nextInt() % keys.size());
+                joke = jokes.get(id);
             } catch (IndexOutOfBoundsException e) {
                 exception = e;
             }
@@ -68,6 +70,7 @@ public class MyEndpoint {
             }
         }
         response.setText(joke);
+        response.setId(id);
 
         return response;
     }
