@@ -28,11 +28,14 @@ public class JokeClient {
     // json keys
     private static final String JOKE_KEY = "text";
     private static final String JOKE_ID = "id";
+    private static final String REQUEST_SUCCESS = "success";
 
     /**
      * Get a joke
      * Currently, the joke is always the same.
      * @return A bad Halloween joke
+     * @throws IOException
+     * @throws JSONException
      */
     public Joke getJoke() throws IOException, JSONException {
         // fetch data from the server
@@ -49,6 +52,23 @@ public class JokeClient {
         joke.id = jsonObject.getInt(JOKE_ID);
 
         return joke;
+    }
+
+    /**
+     * Upload a joke to the server
+     * @param joke Joke submitted by the user
+     * @return true if upload succeeded, otherwise false
+     * @throws IOException
+     * @throws JSONException
+     */
+    public boolean postJoke(String joke) throws IOException, JSONException {
+        String urlString = BASE_URL + POST_JOKE;
+        Request request = new Request.Builder().url(urlString).build();
+        Response response = mClient.newCall(request).execute();
+        String result = response.body().string();
+
+        JSONObject jsonObject = new JSONObject(result);
+        return jsonObject.getBoolean(REQUEST_SUCCESS);
     }
 
 }
