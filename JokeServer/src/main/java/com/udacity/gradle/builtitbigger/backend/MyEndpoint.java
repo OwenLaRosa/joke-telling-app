@@ -10,6 +10,10 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Random;
+
 /**
  * An endpoint class we are exposing
  */
@@ -24,6 +28,23 @@ import com.google.api.server.spi.config.ApiNamespace;
 )
 public class MyEndpoint {
 
+    // unique key to be used for referencing jokes
+    static int nextKey = 0;
+
+    private static LinkedHashMap<Integer, String> jokes;
+    static {
+        jokes = new LinkedHashMap<Integer, String>();
+        jokes.put(0, "Why did the ghost go into the bar?\n\nFor the Boos!");
+        jokes.put(1, "Knock Knock!\n\nWho's there?\n\nLong pause...\n\nJava");
+        nextKey = jokes.keySet().size();
+    }
+    private static ArrayList<Integer> keys;
+    static {
+        keys = new ArrayList<Integer>();
+        keys.add(0);
+        keys.add(1);
+    }
+
     /**
      * Get a randomly selected joke
      * @return A (not) random Halloween joke
@@ -31,7 +52,22 @@ public class MyEndpoint {
     @ApiMethod(name = "joke")
     public Joke getJoke() {
         Joke response = new Joke();
-        response.setText("Why did the ghost go into the bar?\n\nFor the Boos!");
+        String joke = null;
+        while (true) {
+            // make sure we get a joke, try again if there's a concurrency issue
+            Exception exception = null;
+            try {
+                joke = jokes.get(keys.get(new Random().nextInt() % keys.size()));
+            } catch (IndexOutOfBoundsException e) {
+                exception = e;
+            }
+            // verify that the index and key both exist
+            if (joke != null && exception == null) {
+                // if so, we have a joke, otherwise try again
+                break;
+            }
+        }
+        response.setText(joke);
 
         return response;
     }
