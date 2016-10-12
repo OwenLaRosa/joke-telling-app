@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.os.AsyncTask;
 import android.test.AndroidTestCase;
 
+import com.example.Joke;
 import com.example.JokeClient;
 
 import org.json.JSONException;
@@ -28,7 +29,7 @@ public class AsyncTaskTest extends AndroidTestCase {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                String joke = "";
+                Joke joke = null;
                 try {
                     joke = jokeClient.getJoke();
                 } catch (IOException e) {
@@ -36,7 +37,7 @@ public class AsyncTaskTest extends AndroidTestCase {
                 } catch (JSONException e) {
                     assertTrue("JSON Exception occurred", false);
                 }
-                assertFalse("Joke is not empty", joke.equals(""));
+                assertFalse("Joke is not empty", joke.text.equals(""));
             }
         });
     }
