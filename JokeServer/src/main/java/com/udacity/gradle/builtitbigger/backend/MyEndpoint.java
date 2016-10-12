@@ -95,4 +95,36 @@ public class MyEndpoint {
         return response;
     }
 
+    @ApiMethod(name = "upVote", path = "up_vote", httpMethod = ApiMethod.HttpMethod.PUT)
+    public SuccessResponse upVote(@Named("id") int id) {
+        SuccessResponse response = new SuccessResponse();
+
+        Joke joke = jokes.get(id);
+        if (joke != null) {
+            joke.upVote();
+            response.setSuccess(true);
+        } else {
+            response.setSuccess(false);
+        }
+
+        return response;
+    }
+
+    @ApiMethod(name = "downVote", path = "down_vote", httpMethod = ApiMethod.HttpMethod.PUT)
+    public SuccessResponse downVote(@Named("id") int id) {
+        SuccessResponse response = new SuccessResponse();
+
+        Joke joke = jokes.get(id);
+        if (joke != null) {
+            if (joke.downVote() <= 0) {
+                jokes.remove(id);
+            }
+            response.setSuccess(true);
+        } else {
+            response.setSuccess(false);
+        }
+
+        return response;
+    }
+
 }
