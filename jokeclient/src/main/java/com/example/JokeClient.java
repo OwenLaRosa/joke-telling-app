@@ -62,7 +62,7 @@ public class JokeClient {
      * @throws JSONException
      */
     public boolean postJoke(String joke) throws IOException, JSONException {
-        String urlString = BASE_URL + POST_JOKE;
+        String urlString = BASE_URL + POST_JOKE + "?" + PARAM_JOKE + "=" + joke;
         Request request = new Request.Builder().url(urlString).build();
         Response response = mClient.newCall(request).execute();
         String result = response.body().string();
@@ -79,7 +79,7 @@ public class JokeClient {
      * @throws JSONException
      */
     public boolean upvoteJoke(int id) throws IOException, JSONException {
-        String urlString = BASE_URL + UPVOTE_JOKE;
+        String urlString = BASE_URL + UPVOTE_JOKE + "?" + PARAM_JOKE + "=" + Integer.toString(id);
         Request request = new Request.Builder().url(urlString).build();
         Response response = mClient.newCall(request).execute();
         String result = response.body().toString();
@@ -96,7 +96,7 @@ public class JokeClient {
      * @throws JSONException
      */
     public boolean downvoteJoke(int id) throws IOException, JSONException {
-        String urlString = BASE_URL + DOWNVOTE_JOKE;
+        String urlString = BASE_URL + DOWNVOTE_JOKE + "?" + PARAM_JOKE + "=" + Integer.toString(id);
         Request request = new Request.Builder().url(urlString).build();
         Response response = mClient.newCall(request).execute();
         String result = response.body().toString();
