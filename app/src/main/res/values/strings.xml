@@ -4,4 +4,10 @@
     <string name="button_text">Tell Joke</string>
     <string name="action_settings">Settings</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!-- fetching the joke -->
+    <string name="download_error">Failed to download joke. Please try again.</string>
+    <string name="parsing_error">Got a bad joke. Please try again.</string>
+    <string name="unknown_error">Something went wrong. Please try again.</string>
+
 </resources>

@@ -91,11 +91,11 @@ public class MainActivity extends ActionBarActivity {
     private void showError(Exception e) {
         String errorMessage = "";
         if (e instanceof IOException) {
-            errorMessage = "Failed to download joke. Please try again.";
+            errorMessage = getString(R.string.download_error);
         } else if (e instanceof JSONException) {
-            errorMessage = "Got a bad joke. Please try again.";
+            errorMessage = getString(R.string.parsing_error);
         } else {
-            errorMessage = "Something went wrong. Please try again.";
+            errorMessage = getString(R.string.unknown_error);
         }
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
     }
