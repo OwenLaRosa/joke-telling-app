@@ -71,4 +71,38 @@ public class JokeClient {
         return jsonObject.getBoolean(REQUEST_SUCCESS);
     }
 
+    /**
+     * "like"/upvote a joke
+     * @param id joke ID returned from the server
+     * @return true if succeeded, otherwise false
+     * @throws IOException
+     * @throws JSONException
+     */
+    public boolean upvoteJoke(int id) throws IOException, JSONException {
+        String urlString = BASE_URL + UPVOTE_JOKE;
+        Request request = new Request.Builder().url(urlString).build();
+        Response response = mClient.newCall(request).execute();
+        String result = response.body().toString();
+
+        JSONObject jsonObject = new JSONObject(result);
+        return jsonObject.getBoolean(REQUEST_SUCCESS);
+    }
+
+    /**
+     * "dislike"/downvote a joke
+     * @param id joke ID returned from the server
+     * @return true if succeeded, otherwise false
+     * @throws IOException
+     * @throws JSONException
+     */
+    public boolean downvoteJoke(int id) throws IOException, JSONException {
+        String urlString = BASE_URL + DOWNVOTE_JOKE;
+        Request request = new Request.Builder().url(urlString).build();
+        Response response = mClient.newCall(request).execute();
+        String result = response.body().toString();
+
+        JSONObject jsonObject = new JSONObject(result);
+        return jsonObject.getBoolean(REQUEST_SUCCESS);
+    }
+
 }
