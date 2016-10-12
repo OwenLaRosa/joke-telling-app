@@ -12,7 +12,7 @@ import okhttp3.Response;
 public class JokeClient {
 
     private OkHttpClient mClient = new OkHttpClient();
-    private static final String BASE_URL = "http://localhost:8080/_ah/api/myApi/v1/";
+    private static final String BASE_URL = "http://10.0.2.2:8080/_ah/api/myApi/v1/";
 
     // methods
     private static final String JOKE = "joke";
