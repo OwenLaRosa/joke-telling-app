@@ -16,11 +16,15 @@
         android:text="@string/instructions" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/instructions_text_view"
-        android:onClick="jokeButtonClicked"
-        android:text="@string/button_text"/>
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:text="Tell a\nJoke!"
+        android:textSize="25sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/circle_button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="jokeButtonClicked"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
