@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.JokeClient;
 import com.owenlarosa.jokepresenter.JokeActivity;
+import com.example.Joke;
 
 import org.json.JSONException;
 
@@ -50,13 +51,13 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class GetJokeTask extends AsyncTask<Void, Void, String> {
+    private class GetJokeTask extends AsyncTask<Void, Void, Joke> {
 
         private Exception error;
 
         @Override
-        protected String doInBackground(Void... params) {
-            String joke = "";
+        protected Joke doInBackground(Void... params) {
+            Joke joke = null;
             try {
                 joke = mJokeClient.getJoke();
             } catch (Exception e) {
@@ -66,13 +67,13 @@ public class MainActivity extends ActionBarActivity {
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(Joke joke) {
+            super.onPostExecute(joke);
             if (error != null) {
                 showError(error);
             } else {
                 // successfully fetched joke, show detail screen
-                tellJoke(s);
+                tellJoke(joke.text);
             }
         }
     }
