@@ -1,14 +1,20 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.JokeClient;
 import com.owenlarosa.jokepresenter.JokeActivity;
+
+import org.json.JSONException;
+
+import java.io.IOException;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -44,12 +50,54 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view) {
+    private class GetJokeTask extends AsyncTask<Void, Void, String> {
+
+        private Exception error;
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String joke = "";
+            try {
+                joke = mJokeClient.getJoke();
+            } catch (Exception e) {
+                error = e;
+            }
+            return joke;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (error != null) {
+                showError(error);
+            } else {
+                // successfully fetched joke, show detail screen
+                tellJoke(s);
+            }
+        }
+    }
+
+    public void jokeButtonClicked(View view) {
+        new GetJokeTask().execute();
+    }
+
+    private void tellJoke(String joke) {
         // get a joke and show it in the activity
         Intent intent = new Intent(this, JokeActivity.class);
-        String joke = "";
         intent.putExtra(JokeActivity.JOKE_EXTRA, joke);
         startActivity(intent);
+    }
+
+    private void showError(Exception e) {
+        String errorMessage = "";
+        if (e instanceof IOException) {
+            errorMessage = "Failed to download joke. Please try again.";
+        } else if (e instanceof JSONException) {
+            errorMessage = "Got a bad joke. Please try again.";
+        } else {
+            errorMessage = "Something went wrong. Please try again.";
+        }
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
 
