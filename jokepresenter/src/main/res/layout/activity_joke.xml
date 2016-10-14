@@ -39,7 +39,8 @@
         fab:fab_colorPressed="#B71C1C"
         android:layout_toLeftOf="@id/button_aligner"
         android:layout_toStartOf="@id/button_aligner"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/thumbs_down"/>
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/upvote_joke_button"
@@ -52,6 +53,7 @@
         fab:fab_colorPressed="#1B5E20"
         android:layout_toRightOf="@id/button_aligner"
         android:layout_toEndOf="@id/button_aligner"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/thumbs_up"/>
 
 </RelativeLayout>
