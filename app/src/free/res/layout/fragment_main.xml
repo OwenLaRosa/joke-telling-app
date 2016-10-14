@@ -13,7 +13,7 @@
         android:id="@+id/tell_joke_button"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:text="Tell a\nJoke!"
+        android:text="@string/joke_button_text"
         android:textSize="30sp"
         android:textColor="@android:color/white"
         android:background="@drawable/circle_button"
