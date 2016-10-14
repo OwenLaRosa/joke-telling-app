@@ -5,8 +5,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class JokeClient {
@@ -62,8 +64,15 @@ public class JokeClient {
      * @throws JSONException
      */
     public boolean postJoke(String joke) throws IOException, JSONException {
-        String urlString = BASE_URL + POST_JOKE + "?" + PARAM_JOKE + "=" + joke;
-        Request request = new Request.Builder().url(urlString).build();
+        String urlString = BASE_URL + POST_JOKE;
+        // post request with OkHttp: http://stackoverflow.com/questions/23456488/how-to-use-okhttp-to-make-a-post-request
+        RequestBody formBody = new FormBody.Builder()
+                .add(PARAM_JOKE, joke)
+                .build();
+        Request request = new Request.Builder()
+                .url(urlString)
+                .post(formBody)
+                .build();
         Response response = mClient.newCall(request).execute();
         String result = response.body().string();
 
