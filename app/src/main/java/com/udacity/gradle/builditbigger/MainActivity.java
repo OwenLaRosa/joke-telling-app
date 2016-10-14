@@ -73,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
                 showError(error);
             } else {
                 // successfully fetched joke, show detail screen
-                tellJoke(joke.text);
+                tellJoke(joke);
             }
         }
     }
@@ -82,10 +82,11 @@ public class MainActivity extends ActionBarActivity {
         new GetJokeTask().execute();
     }
 
-    private void tellJoke(String joke) {
+    private void tellJoke(Joke joke) {
         // get a joke and show it in the activity
         Intent intent = new Intent(this, JokeActivity.class);
-        intent.putExtra(JokeActivity.JOKE_EXTRA, joke);
+        intent.putExtra(JokeActivity.JOKE_TEXT_EXTRA, joke.text);
+        intent.putExtra(JokeActivity.JOKE_ID_EXTRA, joke.id);
         startActivity(intent);
     }
 

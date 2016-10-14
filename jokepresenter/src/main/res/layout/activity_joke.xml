@@ -35,12 +35,13 @@
         android:layout_marginBottom="16dp"
         fab:fab_shadow="true"
         fab:fab_type="normal"
-        fab:fab_colorNormal="#C62828"
-        fab:fab_colorPressed="#B71C1C"
+        fab:fab_colorNormal="@color/red"
+        fab:fab_colorPressed="@color/red_dark"
         android:layout_toLeftOf="@id/button_aligner"
         android:layout_toStartOf="@id/button_aligner"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/thumbs_down"/>
+        android:src="@drawable/thumbs_down"
+        android:onClick="downvoteJoke"/>
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/upvote_joke_button"
@@ -49,11 +50,12 @@
         android:layout_marginBottom="16dp"
         fab:fab_shadow="true"
         fab:fab_type="normal"
-        fab:fab_colorNormal="#2E7D32"
-        fab:fab_colorPressed="#1B5E20"
+        fab:fab_colorNormal="@color/green"
+        fab:fab_colorPressed="@color/green_dark"
         android:layout_toRightOf="@id/button_aligner"
         android:layout_toEndOf="@id/button_aligner"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/thumbs_up"/>
+        android:src="@drawable/thumbs_up"
+        android:onClick="upvoteJoke"/>
 
 </RelativeLayout>
