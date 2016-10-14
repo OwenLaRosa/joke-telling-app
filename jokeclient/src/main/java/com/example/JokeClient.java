@@ -88,11 +88,16 @@ public class JokeClient {
      * @throws JSONException
      */
     public boolean upvoteJoke(int id) throws IOException, JSONException {
-        String urlString = BASE_URL + UPVOTE_JOKE + "?" + PARAM_JOKE + "=" + Integer.toString(id);
-        Request request = new Request.Builder().url(urlString).build();
+        String urlString = BASE_URL + UPVOTE_JOKE;
+        RequestBody formBody = new FormBody.Builder()
+                .add(PARAM_ID, Integer.toString(id))
+                .build();
+        Request request = new Request.Builder()
+                .url(urlString)
+                .post(formBody)
+                .build();
         Response response = mClient.newCall(request).execute();
-        String result = response.body().toString();
-
+        String result = response.body().string();
         JSONObject jsonObject = new JSONObject(result);
         return jsonObject.getBoolean(REQUEST_SUCCESS);
     }
@@ -105,10 +110,16 @@ public class JokeClient {
      * @throws JSONException
      */
     public boolean downvoteJoke(int id) throws IOException, JSONException {
-        String urlString = BASE_URL + DOWNVOTE_JOKE + "?" + PARAM_JOKE + "=" + Integer.toString(id);
-        Request request = new Request.Builder().url(urlString).build();
+        String urlString = BASE_URL + DOWNVOTE_JOKE;
+        RequestBody formBody = new FormBody.Builder()
+                .add(PARAM_ID, Integer.toString(id))
+                .build();
+        Request request = new Request.Builder()
+                .url(urlString)
+                .post(formBody)
+                .build();
         Response response = mClient.newCall(request).execute();
-        String result = response.body().toString();
+        String result = response.body().string();
 
         JSONObject jsonObject = new JSONObject(result);
         return jsonObject.getBoolean(REQUEST_SUCCESS);
