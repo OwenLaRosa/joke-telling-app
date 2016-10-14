@@ -9,13 +9,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivityFragment">
 
-    <TextView
-        android:id="@+id/instructions_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/instructions" />
-
     <Button
+        android:id="@+id/tell_joke_button"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:text="Tell a\nJoke!"
@@ -25,5 +20,16 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:onClick="jokeButtonClicked"/>
+
+    <TextView
+        android:id="@+id/instructions_text_view"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:text="@string/instructions"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:layout_above="@id/tell_joke_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"/>
 
 </RelativeLayout>
