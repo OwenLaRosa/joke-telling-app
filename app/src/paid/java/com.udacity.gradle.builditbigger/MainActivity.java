@@ -106,10 +106,10 @@ public class MainActivity extends ActionBarActivity {
 
     public void addJoke(View view) {
         new MaterialDialog.Builder(this)
-                .title("Submit Joke")
-                .content("Enter joke here")
+                .title(R.string.dialog_title)
+                .content(R.string.dialog_instruction)
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input(0, 0, new MaterialDialog.InputCallback() {
+                .input(R.string.dialog_hint, R.string.dialog_prefill, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, final CharSequence input) {
                         AsyncTask.execute(new Runnable() {

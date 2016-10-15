@@ -11,4 +11,10 @@
     <string name="parsing_error">Got a bad joke. Please try again.</string>
     <string name="unknown_error">Something went wrong. Please try again.</string>
 
+    <!-- post joke dialog -->
+    <string name="dialog_title">Submit joke</string>
+    <string name="dialog_instruction">Enter joke here</string>
+    <string name="dialog_hint">something funny</string>
+    <string name="dialog_prefill"></string>
+
 </resources>
