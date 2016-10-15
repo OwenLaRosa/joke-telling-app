@@ -59,8 +59,15 @@ public class MyEndpoint {
             // make sure we get a joke, try again if there's a concurrency issue
             Exception exception = null;
             try {
+                if (keys.size() == 0) { // no jokes
+                    // create a new one
+                    int key = nextKey;
+                    nextKey++;
+                    jokes.put(key, new Joke("Ha!\n\nNo joke for you!"));
+                    keys.add(key);
+                }
                 id = keys.get(new Random().nextInt() % keys.size());
-                joke = jokes.get(id).text;
+                joke = jokes.get(id).text + new Integer(jokes.get(id).popularity).toString();
             } catch (IndexOutOfBoundsException e) {
                 exception = e;
             }
@@ -95,7 +102,7 @@ public class MyEndpoint {
         return response;
     }
 
-    @ApiMethod(name = "upVote", path = "up_vote", httpMethod = ApiMethod.HttpMethod.PUT)
+    @ApiMethod(name = "upVote", path = "up_vote", httpMethod = ApiMethod.HttpMethod.POST)
     public SuccessResponse upVote(@Named("id") int id) {
         SuccessResponse response = new SuccessResponse();
 
@@ -110,13 +117,14 @@ public class MyEndpoint {
         return response;
     }
 
-    @ApiMethod(name = "downVote", path = "down_vote", httpMethod = ApiMethod.HttpMethod.PUT)
+    @ApiMethod(name = "downVote", path = "down_vote", httpMethod = ApiMethod.HttpMethod.POST)
     public SuccessResponse downVote(@Named("id") int id) {
         SuccessResponse response = new SuccessResponse();
 
         Joke joke = jokes.get(id);
         if (joke != null) {
             if (joke.downVote() <= 0) {
+                keys.remove(id);
                 jokes.remove(id);
             }
             response.setSuccess(true);

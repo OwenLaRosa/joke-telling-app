@@ -13,7 +13,7 @@ public class Joke {
     public String text;
 
     // Net votes (upvotes- downvotes
-    private int popularity;
+    public int popularity;
 
     public Joke(String text) {
         this.text = text;
@@ -25,7 +25,8 @@ public class Joke {
      * @return Updated popularity score
      */
     public int upVote() {
-        return popularity++;
+        popularity = popularity + 1;
+        return popularity;
     }
 
     /**
@@ -33,7 +34,8 @@ public class Joke {
      * @return Updated popularity score
      */
     public int downVote() {
-        return popularity++;
+        popularity = popularity - 1;
+        return popularity;
     }
 
 }
