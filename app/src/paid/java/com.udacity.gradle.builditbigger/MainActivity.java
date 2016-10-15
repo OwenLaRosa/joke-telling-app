@@ -8,6 +8,7 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -23,11 +24,13 @@ import java.io.IOException;
 public class MainActivity extends ActionBarActivity {
 
     private JokeClient mJokeClient = new JokeClient();
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
     }
 
 
@@ -71,6 +74,7 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(Joke joke) {
             super.onPostExecute(joke);
+            mProgressBar.setVisibility(View.GONE);
             if (error != null) {
                 showError(error);
             } else {
@@ -81,6 +85,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void jokeButtonClicked(View view) {
+        mProgressBar.setVisibility(View.VISIBLE);
         new GetJokeTask().execute();
     }
 

@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tell_joke_button"
-        android:layout_above="@id/adView"/>
+        android:layout_above="@id/adView"
+        android:visibility="gone"/>
 
 </RelativeLayout>

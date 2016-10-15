@@ -54,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tell_joke_button"
-        android:layout_above="@id/post_joke_button"/>
+        android:layout_above="@id/post_joke_button"
+        android:visibility="gone"/>
 
 </RelativeLayout>
