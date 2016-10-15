@@ -67,7 +67,7 @@ public class MyEndpoint {
                     keys.add(key);
                 }
                 id = keys.get(new Random().nextInt() % keys.size());
-                joke = jokes.get(id).text + new Integer(jokes.get(id).popularity).toString();
+                joke = jokes.get(id).text;
             } catch (IndexOutOfBoundsException e) {
                 exception = e;
             }
