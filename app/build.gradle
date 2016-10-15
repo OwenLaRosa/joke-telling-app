@@ -38,4 +38,5 @@ dependencies {
     freeCompile 'com.google.code.findbugs:jsr305:2.0.1'
     compile project(path: ':JokeServer', configuration: 'android-endpoints')
     compile 'com.melnykov:floatingactionbutton:1.2.0'
+    paidCompile 'com.afollestad.material-dialogs:core:0.9.0.2'
 }

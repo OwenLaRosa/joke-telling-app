@@ -45,6 +45,7 @@
         fab:fab_type="normal"
         fab:fab_colorNormal="#1E88E5"
         fab:fab_colorPressed="#1976D2"
-        android:src="@drawable/plus"/>
+        android:src="@drawable/plus"
+        android:onClick="addJoke"/>
 
 </RelativeLayout>
