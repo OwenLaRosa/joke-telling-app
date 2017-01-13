@@ -15,3 +15,7 @@ The following features were implemented in this project.
 * Allow paid users to upload jokes
 * Implemented voting system. Enough downvotes get jokes removed.
 * Wrote unit and integration tests for the backend
+
+## Building and Running
+
+To run, download the zip file and open the folder in Android Studio. First, run "JokeServer" locally. Once the server is running, you can run the "app" module. Requires Android 4.0.4 Ice Cream Sandwich or later.
